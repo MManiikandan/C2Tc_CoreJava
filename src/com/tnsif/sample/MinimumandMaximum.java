@@ -1,4 +1,5 @@
 package com.tnsif.sample;
+
 import java.util.Scanner;
 public class MinimumandMaximum {
 	public static void main(String[] args) {
