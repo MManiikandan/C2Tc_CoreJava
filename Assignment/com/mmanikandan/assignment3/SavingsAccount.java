@@ -29,7 +29,7 @@ public class SavingsAccount extends Account {
 			this.setAccBalance(this.getAccBalance()-amount);
 		}
 		else {
-			System.out.println(this.getUsername()+"your account balance is less");
+			System.out.println(this.getUsername()+" your account balance is less");
 		}
 	}
 

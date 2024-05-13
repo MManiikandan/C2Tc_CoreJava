@@ -9,7 +9,7 @@ public final  class Transaction {
     	 Scanner input=new Scanner(System.in);
     	 System.out.println("Enter the {To} transaction accNo: ");
     	 double accNo=input.nextDouble();
-         boolean validac=true;
+         boolean validac=false;
     	 for(Account to:Account.users) {
     		 if(to.getAccNo()==accNo) {
     			 validac=!validac;

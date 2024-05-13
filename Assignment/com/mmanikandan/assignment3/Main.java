@@ -10,10 +10,10 @@ public class Main{
 		new SavingsAccount("Manikandan.M","1238");
 		new CheckingAccount("Antont.P","1239");
 		new CheckingAccount("Naga.M","1240");
-		System.out.println("Total account : "+Bank.getTotalAccounts());
-	    for(Account user:Account.users) {
-	    	System.out.println(user.getAccNo());
-	    }
+//		System.out.println("Total account : "+Bank.getTotalAccounts());
+//	    for(Account user:Account.users) {
+//	    	System.out.println(user.getAccNo());
+//	    }
 		int userOpt;
 		long accno;
 		String password;
@@ -52,6 +52,7 @@ public class Main{
             				break;
             			case 5:
             				System.exit(0);
+            				break;
             			
             			default:
             				System.exit(0);

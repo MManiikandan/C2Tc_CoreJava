@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public abstract class Account {
 	private static long tempno;
 	static {
-		tempno=1234567891;
+		tempno=1234567890;
 	}
 	static ArrayList<Account> users=new ArrayList<Account>();
 	private long accNo;
