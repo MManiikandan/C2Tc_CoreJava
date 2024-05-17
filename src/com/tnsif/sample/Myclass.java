@@ -15,7 +15,7 @@ public class Myclass {
 	@Override
 	public String toString() {
 		return "Myclass [Serial No="+srNo
-				+ "section=" + section + "]";
+				+ " section=" + section + "]";
 	}
 	
     static void display() {
