@@ -2,9 +2,9 @@ package com.mmanikandan.assignment6;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class AssignmentMain {
-	static Scanner input=new Scanner(System.in);
 	static ArrayList<BankAccount> useraccounts=new ArrayList<BankAccount>();
 	public static void main(String[] args) {
+		Scanner input=new Scanner(System.in);
 		useraccounts.add(new BankAccount(100,5000));
 		useraccounts.add(new BankAccount(101,5000));
 		useraccounts.add(new BankAccount(102,5000));
@@ -27,6 +27,9 @@ public class AssignmentMain {
 					catch(InvalidAmountException e) {
 						System.out.println(e.exception());
 					}
+					finally {
+						input.close();
+					}
 				}
 				else if(userOpt==2) {
 					System.out.println("Enter the withdraw ammount: ");			
@@ -40,9 +43,13 @@ public class AssignmentMain {
 					catch(InvalidAmountException e) {
 						System.out.println(e.exception());
 					}
+					finally {
+						input.close();
+					}
 				}
 				else {
 					System.out.println("Invalid choice ");
+					input.close();
 					System.exit(0);
 				}
 			}
