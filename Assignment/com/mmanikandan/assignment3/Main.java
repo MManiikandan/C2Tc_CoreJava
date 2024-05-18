@@ -2,6 +2,7 @@
 package com.mmanikandan.assignment3;
 import java.util.Scanner;
 public class Main{
+	static Scanner input=new Scanner(System.in);
 	public static void main(String[] args) {
 		new SavingsAccount("Manikandan.R","1234");
 		new SavingsAccount("Marees.C","1235");
@@ -17,7 +18,7 @@ public class Main{
 		int userOpt;
 		long accno;
 		String password;
-		Scanner input=new Scanner(System.in);
+		
 		System.out.println("................................................");
 		System.out.println("Enter 1 to withdraw the ammount");
 		System.out.println("Enter 2 to deposite the ammount");

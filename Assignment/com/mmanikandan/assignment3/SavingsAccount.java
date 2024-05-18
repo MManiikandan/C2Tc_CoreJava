@@ -1,7 +1,7 @@
 package com.mmanikandan.assignment3;
 import java.util.Scanner;
 public class SavingsAccount extends Account {
-    Scanner input;
+    static Scanner input=new Scanner(System.in);
 	public SavingsAccount(String username, String pin) {
          super(username,pin);
 		
@@ -9,7 +9,7 @@ public class SavingsAccount extends Account {
 
 	@Override
 	void deposit() {
-		input=new Scanner(System.in);
+	
 		System.out.println("Enter the deposit ammount: ");
 		Double amount=input.nextDouble();
 		this.setAccBalance(this.getAccBalance()+amount);
@@ -19,7 +19,7 @@ public class SavingsAccount extends Account {
 	
     @Override
 	void withdraw() {
-		input=new Scanner(System.in);
+		
 		System.out.println("welcome "+this.getUsername());
 		System.out.println("Enter the withdraw ammount: ");
 		Double amount=input.nextDouble();

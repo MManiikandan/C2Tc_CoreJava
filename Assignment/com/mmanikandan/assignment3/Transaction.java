@@ -1,12 +1,14 @@
 package com.mmanikandan.assignment3;
 import java.util.Scanner;
 public final  class Transaction {
+	 static  Scanner input;
      static final int transactionfee;
      static {
     	 transactionfee=50;
+    	 input=new Scanner(System.in);
      }
      public Transaction(Account from) {
-    	 Scanner input=new Scanner(System.in);
+    	
     	 System.out.println("Enter the {To} transaction accNo: ");
     	 double accNo=input.nextDouble();
          boolean validac=false;

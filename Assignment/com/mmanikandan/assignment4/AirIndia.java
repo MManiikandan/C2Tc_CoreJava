@@ -26,7 +26,6 @@ public class AirIndia implements Airfare{
 //		return Double.parseDouble(String.format("%.2f", this.hours*this.costPerHour));
 		return this.hours*this.costPerHour;
 	}
-
 	/**
 	 * @return the hours
 	 */

@@ -12,6 +12,7 @@ public class AssignmentMain {
 			    double costPerHour=input.nextDouble();
 			    Airfare airindia=new AirIndia(hours,costPerHour);
 				System.out.printf("The total ammount : %.2f%n",airindia.calculateAmmount());
+			    
 			}
 			else if(userOption==2) {
 				System.out.println("Enter the hours of travel : ");
