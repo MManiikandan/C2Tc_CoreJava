@@ -4,19 +4,15 @@ public class SavingsAccount extends Account {
     static Scanner input=new Scanner(System.in);
 	public SavingsAccount(String username, String pin) {
          super(username,pin);
-		
 	}
-
 	@Override
 	void deposit() {
-	
 		System.out.println("Enter the deposit ammount: ");
 		Double amount=input.nextDouble();
 		this.setAccBalance(this.getAccBalance()+amount);
 		System.out.println(this.getUsername()+
 	    	                   " Succesfully deposit the amount ");
 	}
-	
     @Override
 	void withdraw() {
 		
