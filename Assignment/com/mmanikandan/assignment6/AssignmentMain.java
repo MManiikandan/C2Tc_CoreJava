@@ -11,9 +11,10 @@ public class AssignmentMain {
 		useraccounts.add(new BankAccount(103,5000));
 		System.out.println("Enter the Account no: ");
 		int acc=input.nextInt();
+		boolean validAccount=false;
 		for(BankAccount user:useraccounts) {
 			if(user.getAccountNumber()==acc) {
-				System.out.println("1.Deposit \n2.withdraw Enter the option: ");
+				System.out.println("1.Deposit \n2.withdraw \nEnter the option: ");
 				int userOpt=input.nextInt();
 				if(userOpt==1) {
 					System.out.println("Enter the Deposit ammount: ");			
@@ -25,27 +26,34 @@ public class AssignmentMain {
 						System.out.println(user.deposit(ammount)); 	
 					}
 					catch(InvalidAmountException e) {
-						System.out.println(e.exception());
+						System.out.println(e.handleException());
 					}
 					finally {
 						input.close();
+						validAccount=!validAccount;
 					}
 				}
 				else if(userOpt==2) {
-					System.out.println("Enter the withdraw ammount: ");			
+					System.out.println("Enter the withdraw ammount: ");	
+					double ammount=input.nextDouble();
 					try {
-						double ammount=input.nextDouble();
 						if(ammount<=0) {
 							throw new InvalidAmountException();
 						}
-						System.out.println(user.withdrawal(ammount)); 	
+						try {
+							System.out.println(user.withdrawal(ammount));
+						} catch (InsufficientFundsException e) {
+							System.out.println(e.handleException()
+									          +user.getBalance());
+						} 	
 					}
-					catch(InvalidAmountException e) {
-						System.out.println(e.exception());
-					}
-					finally {
+				  catch(InvalidAmountException e) {
+						System.out.println(e.handleException());
+				  }
+				  finally {
 						input.close();
-					}
+						validAccount=!validAccount;
+				  }
 				}
 				else {
 					System.out.println("Invalid choice ");
@@ -53,7 +61,14 @@ public class AssignmentMain {
 					System.exit(0);
 				}
 			}
+			
+			
 		}
+		if(!validAccount) {
+			System.out.println("Invalid account......");
+		}
+		
 	}
 
 }
+

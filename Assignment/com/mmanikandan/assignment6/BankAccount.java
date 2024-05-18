@@ -16,20 +16,18 @@ public class BankAccount {
 	}
 	public String deposit(double ammount) {
 		this.balance=this.balance+ammount;
-		return new String("Deposit the ammount :"+ammount+" succesfully... ");
+		return new String("Deposit the ammount :"
+		                  +ammount+" succesfully... ");
 	}
 
-	public String withdrawal(double ammount) {
-		try {
-			if(this.balance<ammount) {
-			    throw new InsufficientFundsException();
-			}
-		}
-		catch(InsufficientFundsException e) {
-			return new String(e.exception()+this.getBalance());
+	public String withdrawal(double ammount) 
+			                throws InsufficientFundsException {
+		if(this.balance<ammount) {
+			 throw new InsufficientFundsException();
 		}
 		this.balance=this.balance-ammount;
-		return new String("Withdrawal the ammount "+ammount +" succesfully... ");
+		return new String("Withdrawal the ammount "
+		                  +ammount +" succesfully... ");
 	}
 	/**
 	 * @return the accountNumber
