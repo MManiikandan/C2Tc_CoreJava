@@ -65,6 +65,7 @@ public class AssignmentMain {
 			
 		}
 		if(!validAccount) {
+			input.close();
 			System.out.println("Invalid account......");
 		}
 		
