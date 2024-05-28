@@ -15,17 +15,34 @@ public class Main {
               int option=input.nextInt();
               switch(option) {
                 case 1:
-	        	    EmployeeDAO.viewEmployeeDetail(Detail.getEmployeeId());
+                	Employee emp=EmployeeDAO.viewEmployeeDetail(Detail.getEmployeeId());
+	        	    if( emp.getEmpId()==0) {
+	        	    	System.out.println("Employee not found..");	
+	        	    }
+	        	    else {
+	        	    	System.out.println(emp.toString());
+	        	    }
 	        	    continueOpt=Detail.makePrediction();
         	        break;    
                 case 2:
                     EmployeeDAO.insertEmployee(Detail.getEmployeeDetails());
   	        	    continueOpt=Detail.makePrediction();
           	        break;
+               
+                case 3:
+                	EmployeeDAO.updateEmployee(Detail.getEmployeeDetails(),Detail.getEmployeeId());
+  	        	    continueOpt=Detail.makePrediction();
+          	        break;
                 case 4:
                 	EmployeeDAO.deleteEmployee(Detail.getEmployeeId());
   	        	    continueOpt=Detail.makePrediction();
           	        break;
+                case 5:
+                	System.out.println("Exited...");
+                	System.exit(0);
+                default:
+                	System.out.println("Invalid choice");
+                	System.exit(0);
              }
       }
 		

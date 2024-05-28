@@ -26,8 +26,6 @@ public final  class MailSend {
         catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println("email sent succesfully to"+emp.getEmpMail());
-
     }
     private static Message prepareMessage(Session session,String username,Employee emp,String msg){
        Message message=new MimeMessage(session);
