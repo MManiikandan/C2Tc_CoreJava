@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 
 public class EmployeeDAO{
 
-	public static Employee viewEmployeeDetail(int empId) throws SQLException, ParseException   {
+	public static Employee viewEmployeeDetail(int empId) throws SQLException, ParseException,SQLIntegrityConstraintViolationException   {
 	    Employee emp=new Employee();
 	    Connection con=DBconnection.getConnection();
 	    String query="SELECT * FROM employee WHERE Emp_id="+empId;
@@ -26,10 +26,10 @@ public class EmployeeDAO{
 			 emp.setEmpSalary(rs.getInt(5));
 			 emp.setEmpMail(rs.getString(6));
 		}	
-		DBclose.getClose(con);
+	    con.close();
 		return emp;
     }
-    public static void  insertEmployee(Employee employee) throws SQLException {
+    public static String insertEmployee(Employee employee) throws SQLException {
     	 Connection con=DBconnection.getConnection();
     	 String query="INSERT INTO employee("
     	 		+ "Emp_joiningDate,"
@@ -40,7 +40,6 @@ public class EmployeeDAO{
     	 		+ ")"
     	  		+ "values(?,?,?,?,?);";
     	 PreparedStatement pst=con.prepareStatement(query);
-    	 try {
     	 pst.setDate(1, new java.sql.Date(employee.getEmpJoiningDate().getTime()));
     	 pst.setString(2, employee.getEmpName());
     	 pst.setString(3, employee.getEmpDesignation());
@@ -49,16 +48,11 @@ public class EmployeeDAO{
     	 pst.executeUpdate();
     	 String msg="  Employee Details  Successfully insert into the employee table";
     	 MailSend.sendMail(employee,msg);
-    	 System.out.println(msg);
-    	 
-    	 }
-    	 catch(SQLIntegrityConstraintViolationException e) {
-    		 System.out.println("Duplicate entry..Doesnot Insert the Employee detail");
-    	 }
-    	 DBclose.getClose(con);
+         con.close();;
+    	 return msg;	
     }
    
-    public static void updateEmployee(Employee employee,int empid) throws SQLException {
+    public static String updateEmployee(Employee employee,int empid) throws SQLException {
    	        Connection con=DBconnection.getConnection();
 		    String query="UPDATE employee SET Emp_joiningDate=?,Emp_name=?,Emp_designation=?,Emp_salary=?,Emp_mailid=? WHERE Emp_id=?;";
 	        PreparedStatement pst=con.prepareStatement(query);
@@ -71,10 +65,11 @@ public class EmployeeDAO{
 			pst.executeUpdate();
 			String msg=" Employee Details  Successfully updated into the employee table";
 			MailSend.sendMail(employee,msg);
-			System.out.println(msg);	
-	        DBclose.getClose(con);  
+			con.close();
+			return msg;	
+	        
       }
-	    public static void deleteEmployee( int empid) throws SQLException, ParseException {
+	    public static String deleteEmployee( int empid) throws SQLException, ParseException {
 	   	 Connection con=DBconnection.getConnection();
 	   	 Employee emp=viewEmployeeDetail(empid);
 	   	 String query="DELETE FROM employee WHERE Emp_id="+empid;
@@ -83,10 +78,12 @@ public class EmployeeDAO{
 	   	 if(prediction.test(st.executeUpdate(query))) {
 		    	 String msg="Employee Details  Successfully deleted into the employee table";
 		    	 MailSend.sendMail(emp,msg);
-		    	 System.out.println(msg);
+		    	 con.close();
+		    	 return msg;
 	   	 }else {
 	   	   String msg="Invalid employee";
-	   	   System.out.println(msg);
+	   	   con.close();
+	   	  return msg;
 	   	 }   
 	   }
 }

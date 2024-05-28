@@ -3,6 +3,7 @@ package com.jdbc.miniproject;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Scanner;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 public class Main { 
 	 static   Scanner input=new Scanner(System.in);
@@ -25,16 +26,20 @@ public class Main {
 	        	    continueOpt=Detail.makePrediction();
         	        break;    
                 case 2:
-                    EmployeeDAO.insertEmployee(Detail.getEmployeeDetails());
+                	try {
+                         System.out.println(EmployeeDAO.insertEmployee(Detail.getEmployeeDetails()));
+                    }catch(SQLIntegrityConstraintViolationException e) {
+                    	System.out.println("Dupicate entry....Doesnot insert the employee detail");
+                    }
   	        	    continueOpt=Detail.makePrediction();
           	        break;
                
                 case 3:
-                	EmployeeDAO.updateEmployee(Detail.getEmployeeDetails(),Detail.getEmployeeId());
+                	System.out.println(EmployeeDAO.updateEmployee(Detail.getEmployeeDetails(),Detail.getEmployeeId()));
   	        	    continueOpt=Detail.makePrediction();
           	        break;
                 case 4:
-                	EmployeeDAO.deleteEmployee(Detail.getEmployeeId());
+                	System.out.println(EmployeeDAO.deleteEmployee(Detail.getEmployeeId()));
   	        	    continueOpt=Detail.makePrediction();
           	        break;
                 case 5:
